@@ -7,7 +7,9 @@ const ReviewsPage = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch("/api/v1/reviews/randomreviews");
+        const response = await fetch(
+          "https://cropify-deploy.onrender.com/api/v1/reviews/randomreviews"
+        );
         const data = await response.json();
         console.log("review data", data.data.data);
         // data = data.data.data;

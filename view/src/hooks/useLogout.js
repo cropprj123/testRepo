@@ -7,12 +7,15 @@ const useLogOut = () => {
 
   const logout = async () => {
     try {
-      const res = await fetch("/api/v1/users/logout", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        "https://cropify-deploy.onrender.com/api/v1/users/logout",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await res.json();
 
       console.log(data);
