@@ -9,10 +9,11 @@ export default defineConfig({
     //got rid of the CORS error
     proxy: {
       "/api": {
-        target: "http://localhost:3000",
+        target: "https://cropify-deploy.onrender.com",
         changeOrigin: true,
-        secure: false, //as http not https
+        secure: true, //as http not https
       },
     },
   },
 });
+// https://cropify-deploy.onrender.com/
