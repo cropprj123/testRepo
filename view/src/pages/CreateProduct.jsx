@@ -50,8 +50,8 @@ const CreateProduct = () => {
         );
         const response = await res.json();
         // setUser(response.data.user);
-        // console.log("store data", response.data.data.data);
-        setStores(response.data.data.data);
+        console.log("store data", response.data.data);
+        setStores(response.data.data);
       } catch (error) {
         console.error("Error fetching store data:", error);
         setErrorMessage("Error fetching store data. Please try again.");
@@ -121,7 +121,7 @@ const CreateProduct = () => {
       const storeAdd = await fetch(
         "https://cropify-deploy.onrender.com/api/v1/crops",
         {
-          method: "GET",
+          method: "POST",
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -129,6 +129,8 @@ const CreateProduct = () => {
           body: JSON.stringify(data),
         }
       );
+      const res = await storeAdd.json();
+      console.log("stor add res ", res);
 
       setSuccessMessage("Product created successfully!");
     } catch (err) {
