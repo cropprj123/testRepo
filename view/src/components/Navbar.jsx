@@ -90,7 +90,7 @@ const Navbar = () => {
           {/* Right Nav */}
 
           <div className="hidden md:flex items-center  space-x-3">
-            {user.status === "success" ? (
+            {user ? (
               <>
                 <Link to="/cart" className="py-2 px-3 ">
                   <svg
@@ -219,7 +219,7 @@ const Navbar = () => {
           >
             Predictions
           </Link>
-          {user.status === "success" ? (
+          {user ? (
             <>
               <Link
                 to="/logout"
