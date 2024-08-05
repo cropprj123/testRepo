@@ -35,7 +35,7 @@ const LoginPage = () => {
       }
       console.log(data);
       localStorage.setItem("user-threads", JSON.stringify(data.data.user));
-      setUser(data.data.user);
+      setUser(data.data.usert);
     } catch (error) {
       console.log("login page error", error);
     } finally {
