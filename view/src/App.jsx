@@ -7,9 +7,12 @@ import HomePage from "./pages/HomePage";
 import ReviewsPage from "./pages/ReviewsPage"; // Import the ReviewsPage
 import SignupPage from "./pages/SignUpPage";
 import Navbar from "./components/Navbar";
+import { useState } from "react";
 
 function App() {
   const user = useRecoilValue(userAtom);
+
+  const [isLoading, setIsloading] = useState(true);
 
   return (
     <>
