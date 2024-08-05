@@ -10,7 +10,7 @@ import Navbar from "./components/Navbar";
 import { useState } from "react";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminPage from "./pages/AdminPage";
-
+import Profile from "./pages/Profile";
 function App() {
   const user = useRecoilValue(userAtom);
   const [isLoading, setIsloading] = useState(true);
@@ -35,8 +35,18 @@ function App() {
         {user && (
           <>
             {/* <Route path="/logout" element={<Logout />} /> */}
-            <Route path="/profile" element={<AdminPage />}></Route>
-            {/* Admin-only routes */}
+            <Route path="/profile" element={<AdminPage />}>
+              <Route index element={<Profile />} />
+              {user.role == "admin" && (
+                <>
+                  {" "}
+                  <Route path="createproduct" element={<CreateProduct />} />
+                  <Route path="createstore" element={<CreateStore />} />
+                  {/* Admin-only routes */}
+                </>
+              )}
+            </Route>
+
             {/* <Route
               path="/admin"
               element={
