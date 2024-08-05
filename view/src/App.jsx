@@ -11,6 +11,8 @@ import { useState } from "react";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminPage from "./pages/AdminPage";
 import Profile from "./pages/Profile";
+import CreateProduct from "./pages/CreateProduct";
+import CreateStore from "./pages/CreateStore";
 function App() {
   const user = useRecoilValue(userAtom);
   const [isLoading, setIsloading] = useState(true);
