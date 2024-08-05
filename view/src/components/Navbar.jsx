@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import userAtom from "../atoms/userAtom";
 import useLogOut from "../hooks/useLogout";
@@ -9,6 +9,7 @@ import reactLogo from "../assets/react.svg";
 const Navbar = () => {
   const user = useRecoilValue(userAtom);
   const logout = useLogOut();
+  const location = useLocation();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
