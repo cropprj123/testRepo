@@ -74,7 +74,7 @@ const Navbar = () => {
               >
                 Our Stores
               </Link>
-              {user.status === "success" && (
+              {user && (
                 <Link
                   to="/prediction/crop"
                   className={`py-5 px-3 text-gray-700 hover:text-gray-950 ${
