@@ -118,7 +118,7 @@ const CreateProduct = () => {
       const res = await storeAdd.json();
       console.log("store add res ", res);
 
-      if (res.success) {
+      if (res.status === "success") {
         setSuccessMessage("Product created successfully!");
       } else {
         setErrorMessage("Error creating product. Please try again.");
