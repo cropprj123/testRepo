@@ -90,21 +90,15 @@ const CreateProduct = () => {
 
     const data = new FormData();
     for (let key in formData) {
-      if (key !== "storelocation" && !key.startsWith("store")) {
+      if (key !== "storelocation") {
         data.append(key, formData[key]);
       }
     }
 
-    // Append storeLocation array directly
     formData.storelocation.forEach((storeId, index) => {
       data.append(`storelocation[${index}]`, storeId);
     });
 
-    // data.append("storeLocation", JSON.stringify(formData.storeLocation));
-    // console.log("try location", storeLocations);
-
-    // data.append("storeLocation", JSON.stringify(storeLocations));
-    // Convert FormData to regular object for logging
     const formDataObject = {};
     data.forEach((value, key) => {
       formDataObject[key] = value;
@@ -113,26 +107,22 @@ const CreateProduct = () => {
 
     try {
       console.log("creating prod ", data);
-      //   await axios.post("http://127.0.0.1:3000/api/v1/crops/", data, {
-      //     headers: {
-      //       "Content-Type": "multipart/form-data",
-      //     },
-      //   });
       const storeAdd = await fetch(
         "https://cropify-deploy.onrender.com/api/v1/crops",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
           credentials: "include",
           body: data,
         }
       );
       const res = await storeAdd.json();
-      console.log("stor add res ", res);
+      console.log("store add res ", res);
 
-      setSuccessMessage("Product created successfully!");
+      if (res.success) {
+        setSuccessMessage("Product created successfully!");
+      } else {
+        setErrorMessage("Error creating product. Please try again.");
+      }
     } catch (err) {
       setErrorMessage("Error creating product. Please try again.");
       console.error("Error creating product:", err);
@@ -140,6 +130,63 @@ const CreateProduct = () => {
       setLoading(false);
     }
   };
+
+  //   const handleSubmit = async (e) => {
+  //     e.preventDefault();
+  //     setLoading(true);
+
+  //     const data = new FormData();
+  //     for (let key in formData) {
+  //       if (key !== "storelocation" && !key.startsWith("store")) {
+  //         data.append(key, formData[key]);
+  //       }
+  //     }
+
+  //     // Append storeLocation array directly
+  //     formData.storelocation.forEach((storeId, index) => {
+  //       data.append(`storelocation[${index}]`, storeId);
+  //     });
+
+  //     // data.append("storeLocation", JSON.stringify(formData.storeLocation));
+  //     // console.log("try location", storeLocations);
+
+  //     // data.append("storeLocation", JSON.stringify(storeLocations));
+  //     // Convert FormData to regular object for logging
+  //     const formDataObject = {};
+  //     data.forEach((value, key) => {
+  //       formDataObject[key] = value;
+  //     });
+  //     console.log("data to send ", formDataObject);
+
+  //     try {
+  //       console.log("creating prod ", data);
+  //       //   await axios.post("http://127.0.0.1:3000/api/v1/crops/", data, {
+  //       //     headers: {
+  //       //       "Content-Type": "multipart/form-data",
+  //       //     },
+  //       //   });
+  //       const storeAdd = await fetch(
+  //         "https://cropify-deploy.onrender.com/api/v1/crops",
+  //         {
+  //           method: "POST",
+  //           headers: {
+  //             "Content-Type": "multipart/form-data",
+  //           },
+  //           credentials: "include",
+  //           body: data,
+  //         }
+  //       );
+  //       const res = await storeAdd.json();
+  //       console.log("stor add res ", res);
+
+  //       setSuccessMessage("Product created successfully!");
+  //     } catch (err) {
+  //       setErrorMessage("Error creating product. Please try again.");
+  //       console.error("Error creating product:", err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
   const handleAddAnotherProduct = () => {
     setSuccessMessage("");
