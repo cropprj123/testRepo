@@ -34,7 +34,7 @@ function App() {
         {/* Routes accessible if logged in */}
         {user && (
           <>
-            <Route path="/logout" element={<Logout />} />
+            {/* <Route path="/logout" element={<Logout />} /> */}
             <Route path="/profile" element={<AdminPage />}></Route>
             {/* Admin-only routes */}
             {/* <Route

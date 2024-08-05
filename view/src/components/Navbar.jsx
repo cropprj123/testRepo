@@ -5,6 +5,7 @@ import userAtom from "../atoms/userAtom";
 import useLogOut from "../hooks/useLogout";
 // import reactLogo from "../../assets/reactLogo.svg";
 import reactLogo from "../assets/react.svg";
+import { Button } from "@mui/material";
 
 const Navbar = () => {
   const user = useRecoilValue(userAtom);
@@ -114,12 +115,12 @@ const Navbar = () => {
                     </Badge>
                   </Box> */}
                 </Link>
-                <Link
-                  to="/logout"
+                <Button
+                  onClick={useLogOut}
                   className="py-2 px-3 bg-yellow-400 hover:bg-yellow-300 text-black hover:text-yellow-800 rounded"
                 >
                   Logout
-                </Link>
+                </Button>
                 <Link
                   to="/profile"
                   className="py-5 px-3 text-gray-700 hover:text-gray-950"
