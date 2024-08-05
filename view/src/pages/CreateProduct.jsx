@@ -126,7 +126,7 @@ const CreateProduct = () => {
             "Content-Type": "multipart/form-data",
           },
           credentials: "include",
-          body: JSON.stringify(data),
+          body: data,
         }
       );
       const res = await storeAdd.json();
