@@ -28,6 +28,8 @@ const useLogOut = () => {
 
       localStorage.removeItem("user-threads");
       setUser(null);
+      // Refresh the page
+      window.location.reload();
     } catch (error) {
       console.log("eror in logout hook", data.error);
       //   console.log(error);

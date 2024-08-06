@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import userAtom from "../atoms/userAtom";
 
 const LoginPage = () => {
   const [user, setUser] = useRecoilState(userAtom);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const [inputs, setInputs] = useState({
     email: "",
@@ -12,7 +14,7 @@ const LoginPage = () => {
   });
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Fixed the method name
+    e.preventDefault();
     setLoading(true);
     try {
       const res = await fetch(
@@ -35,7 +37,9 @@ const LoginPage = () => {
       }
       console.log(data);
       localStorage.setItem("user-threads", JSON.stringify(data.data.user));
-      setUser(data.data.user);
+      setUser(data.data.user); // Corrected to match the data structure
+      window.location.reload();
+      navigate("/"); // Navigate to the homepage
     } catch (error) {
       console.log("login page error", error);
     } finally {
